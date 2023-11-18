@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Sharing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(0, 149, 255);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height:100vh;
+            display: flex;
+            background-image: url("back.jpg");
+           
+            align-items: center;
+        }
+
+        header {
+            background-color:orange;
+            color:black;
+            text-align: center;
+            padding: 1em;
+            width: 70vh;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2px auto;
+            padding: 20px;
+            background-color:orange;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        #recipe-form {
+            margin-bottom: 20px;
+            height: 50vh;
+            width: 50vh;
+
+        }
+
+        .recipe {
+            border: 1px solid orange;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color:orange;
+            border-radius: 5px;
+        }
+
+        .recipe h2 {
+            color: #333;
+        }
+        button{
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Share you new recipe with the community!</h1>
+    </header>
+
+    <main>
+        <form id="recipe-form">
+            <h2>Add a Recipe</h2>
+            <label for="recipe-name">Recipe Name:</label>
+            <input type="text" id="recipe-name" required  style="background-color:beige;"><br>
+
+            <label for="ingredients">Ingredients:</label>
+            <textarea id="ingredients" rows="4" required  style="background-color:beige;"></textarea><br>
+
+            <label for="instructions">Instructions:</label>
+            <textarea id="instructions" rows="6" required style="background-color:beige;"></textarea><br>
+
+            <button type="button" onclick="addRecipe()">Add Recipe</button><br>
+        </form>
+
+        <div id="recipe-list"></div>
+    </main>
+
+    <script>
+        function addRecipe() {
+            const name = document.getElementById('recipe-name').value;
+            const ingredients = document.getElementById('ingredients').value;
+            const instructions = document.getElementById('instructions').value;
+
+            const recipeList = document.getElementById('recipe-list');
+
+            const recipeDiv = document.createElement('div');
+            recipeDiv.classList.add('recipe');
+
+            const heading = document.createElement('h2');
+            heading.textContent = name;
+
+            const ingredientsPara = document.createElement('p');
+            ingredientsPara.textContent = `Ingredients: ${ingredients}`;
+
+            const instructionsPara = document.createElement('p');
+            instructionsPara.textContent = `Instructions: ${instructions}`;
+
+            recipeDiv.appendChild(heading);
+            recipeDiv.appendChild(ingredientsPara);
+            recipeDiv.appendChild(instructionsPara);
+
+            recipeList.appendChild(recipeDiv);
+
+            // Clear form fields
+            document.getElementById('recipe-form').reset();
+        }
+    </script>
+
+</body>
+</html>
